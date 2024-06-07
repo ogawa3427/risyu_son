@@ -1,0 +1,62 @@
+<charset="UTF-8">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fetch API Sample</title>
+</head>
+<body>
+    <div style="padding: 20px;">
+        <h1>Fetch API Sample</h1>
+
+        <p>mode</p>
+        <select id="mode" name="mode">
+            <option value="">（空文字列）</option>
+            <option value="hackathon">hackathon</option>
+            <option value="search">search</option>
+            <option value="exchange">exchange</option>
+            <option value="all">all</option>
+        </select>
+
+        <p>word</p>
+        <select id="word" name="word">
+            <option value="">（空文字列）</option>
+            <option value="202404030708">202404030708</option>
+            <option value="12345678901234">12345678901234</option>
+            <option value="123456789012">123456789012</option>
+        </select>
+
+        <button id="fetch" onclick="fetchData()" style="background-color: #B00000; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">Fetch</button>
+
+        <p>Response</p>
+        <div id="result" style="border: 1px solid #000; padding: 10px; border-radius: 5px;">
+        </div>
+    </div>
+
+    <script>
+        function fetchData() {
+            document.getElementById('result').innerText = 'Fetching...';
+            const mode = document.getElementById('mode').value;
+            const word = document.getElementById('word').value;
+
+            fetch(`https://kurisyushien.org/api?mode=${mode}&word=${word}`, {
+                mode: 'cors',
+                redirect: 'follow'
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('result').innerText = 'Error fetching data.';
+                });
+        }
+    </script>
+</body>
+</html>
+
