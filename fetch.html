@@ -7,6 +7,7 @@
 <body>
     <div style="padding: 20px;">
         <h1>Fetch API Sample</h1>
+        <p>F12で結果を確認する</p>
 
         <p>mode</p>
         <select id="mode" name="mode">
@@ -15,7 +16,9 @@
             <option value="search">search</option>
             <option value="exchange">exchange</option>
             <option value="all">all</option>
+            <option value="input">入力する→</option>
         </select>
+        <input type="text" id="mode_input" name="mode_input">
 
         <p>word</p>
         <select id="word" name="word">
@@ -24,14 +27,11 @@
             <option value="202404030708">202404031711</option>
             <option value="12345678901234">12345678901234</option>
             <option value="123456789012">123456789012</option>
+            <option value="input">入力する→</option>
         </select>
+        <input type="text" id="word_input" name="word_input">
 
         <button id="fetch" onclick="fetchData()" style="background-color: #B00000; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">Fetch</button>
-
-        <p>Response from</p>
-        <p id="url"></p>
-        <div id="result" style="border: 1px solid #000; padding: 10px; border-radius: 5px;">
-        </div>
     </div>
 
     <script>
@@ -39,28 +39,29 @@
         function fetchData() {
             console.log('fetchを開始します');
 
-            document.getElementById('result').innerText = 'Fetching...';
-
-            const mode = document.getElementById('mode').value;
-            const word = document.getElementById('word').value;
-
-            document.getElementById('url').innerText = `https://kurisyushien.org/api?mode=${mode}&word=${word}`;
+            let mode = document.getElementById('mode').value;
+            let word = document.getElementById('word').value;
+            if (mode === 'input') {
+                mode = document.getElementById('mode_input').value;
+            }
+            if (word === 'input') {
+                word = document.getElementById('word_input').value;
+            }
 
             fetch(`https://kurisyushien.org/api?mode=${mode}&word=${word}`, {
                 mode: 'cors',
                 redirect: 'follow'
             })
-                .then(response => {
-                    console.log('response:', response);
-                    return response.json();
+                .then(async response => {
+                    const text = await response.text();
+                    console.log('response text:', text);
+                    return JSON.parse(text);
                 })
                 .then(data => {
-                    document.getElementById('result').innerText = JSON.stringify(data, null, 2);
                 })
                 //エラー周りは謎の不具合あります
                 .catch(error => {
                     console.error('Error:', error);
-                    document.getElementById('result').innerText = JSON.stringify(error, null, 2);
                 });
         }
     </script>

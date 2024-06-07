@@ -10,7 +10,10 @@
     <div id="box" style="border: 1px solid #000; padding: 10px; border-radius: 5px;">
         <p>0</p>
     </div>
-    <button id="clear" onclick="clear()">Clear</button>
+    <button id="clear_" onclick="clear_()">Clear</button>
+
+
+
     <script>
         let count = 0;
 
@@ -19,13 +22,11 @@
             document.getElementById('box').innerHTML += `<p>${count}</p>`;
         }
 
-        function clear() {
+        function clear_() {
             count = 0;
-            
             document.getElementById('box').innerHTML = '';
             document.getElementById('box').appendChild(document.createElement('p')).textContent = '0';
         }
     </script>
 </body>
 </html>
-
