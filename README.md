@@ -20,7 +20,7 @@ GETリクエストを使います
 
 ### 試しに叩いてみる
 ```bash
-curl -X 'GET' 'https://kurisyushien.org/api&mode=hackathon'
+curl -X -L 'GET' 'https://kurisyushien.org/api?mode=hackathon'
 ```
 
 こんな感じでURLのクエリを使って操作していきます
@@ -269,18 +269,18 @@ yyyyMMddHHmmss形式の**12文字のキー**で時刻を指定して情報を取
 
 [https://ogawa3427.github.io/risyu_son/fetch.html](https://ogawa3427.github.io/risyu_son/fetch.html)
 
-[https://github.com/ogawa3427/risyu_son/fetch.html](https://github.com/ogawa3427/risyu_son/fetch.html)
+[https://github.com/ogawa3427/risyu_son/blob/master/fetch.html](https://github.com/ogawa3427/risyu_son/blob/master/fetch.html)
 
 
 ### DOM操作のサンプルコード
 
 [https://ogawa3427.github.io/risyu_son/DOM.html](https://ogawa3427.github.io/risyu_son/DOM.html)
 
-[https://github.com/ogawa3427/risyu_son/DOM.html](https://github.com/ogawa3427/risyu_son/DOM.html)
+[https://github.com/ogawa3427/risyu_son/blob/master/DOM.html](https://github.com/ogawa3427/risyu_son/blob/master/DOM.html)
 
 <!-- ### cookieをいい感じに扱うサンプルコード
 
 [https://ogawa3427.github.io/risyu_son/cookie.html](https://ogawa3427.github.io/risyu_son/cookie.html)
 
-[https://github.com/ogawa3427/risyu_son/cookie.html](https://github.com/ogawa3427/risyu_son/cookie.html)
+[https://github.com/ogawa3427/risyu_son/blob/master/cookie.html](https://github.com/ogawa3427/risyu_son/blob/master/cookie.html)
  -->
