@@ -35,7 +35,7 @@
     </div>
 
     <script>
-        //ここから使える
+        //ここから
         function fetchData() {
             console.log('fetchを開始します');
 
@@ -54,16 +54,17 @@
             })
                 .then(async response => {
                     const text = await response.text();
-                    console.log('response text:', text);
                     return JSON.parse(text);
                 })
                 .then(data => {
+                    console.log(data);
+                    console.log(data.data);
                 })
-                //エラー周りは謎の不具合あります
                 .catch(error => {
                     console.error('Error:', error);
                 });
         }
+        //ここまでコピペするといいよ
     </script>
 </body>
 </html>
