@@ -265,9 +265,9 @@ yyyyMMddHHmmss形式の**12文字のキー**で時刻を指定して情報を取
 
 [https://github.com/ogawa3427/risyu_son/DOM.html](https://github.com/ogawa3427/risyu_son/DOM.html)
 
-### cookieをいい感じに扱うサンプルコード
+<!-- ### cookieをいい感じに扱うサンプルコード
 
 [https://ogawa3427.github.io/risyu_son/cookie.html](https://ogawa3427.github.io/risyu_son/cookie.html)
 
 [https://github.com/ogawa3427/risyu_son/cookie.html](https://github.com/ogawa3427/risyu_son/cookie.html)
-
+ -->

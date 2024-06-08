@@ -78,14 +78,12 @@
                 return;
             }
             const expires = new Date(Date.now() + days * 864e5).toUTCString();
-            cookie[key] = value;
+            cookie[key] = encodeURIComponent(value);  // 値をエンコード
             let cookieString = '';
             for (let key in cookie) {
-                cookieString += `${key}=${cookie[key]}; expires=${expires};`;
+                cookieString += `${key}=${cookie[key]}; expires=${expires}; path=/;`;
             }
-            console.log(cookieString);
             document.cookie = cookieString;
-            console.log(document.cookie);
         }
 
         function deleteCookie(key) {
