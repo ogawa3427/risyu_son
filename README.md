@@ -27,7 +27,7 @@ curl -X -L 'GET' 'https://kurisyushien.org/api?mode=hackathon'
 ### 基本モード
 リアルタイム情報(ということにしているもの)を取得します
 #### req  
-`https://kurisyushien.org/api&mode=hackathon`(wordは任意)  
+`https://kurisyushien.org/api?mode=hackathon`(wordは任意)  
 #### res 
 ```json
 {
@@ -79,7 +79,7 @@ curl -X -L 'GET' 'https://kurisyushien.org/api?mode=hackathon'
 yyyyMMddHHmmss形式の**12文字のキー**で時刻を指定して情報を取得します  
 202404010715から202404032357までおおむね1分間隔で取得できます
 #### req  
-`https://kurisyushien.org/api&mode=search&word=202404010715`  
+`https://kurisyushien.org/api?mode=search&word=202404010715`  
 #### res 
 ```json
 {
@@ -131,7 +131,7 @@ yyyyMMddHHmmss形式の**12文字のキー**で時刻を指定して情報を取
 時間割番号を指定して情報を取得します  
 一意に決まらなかった場合は決まらなかった場合は該当する時間割番号をすべて返します
 #### req(一意に定まる場合)
-`https://kurisyushien.org/api&mode=search&word=74E01.101`  
+`https://kurisyushien.org/api?mode=search&word=74E01.101`  
 #### res(一意に定まる場合)
 ```json
 {
@@ -180,7 +180,7 @@ yyyyMMddHHmmss形式の**12文字のキー**で時刻を指定して情報を取
 ```
 
 #### req(一意に定まらない場合)
-`https://kurisyushien.org/api&mode=search&word=74E01`  
+`https://kurisyushien.org/api?mode=search&word=74E01`  
 #### res(一意に定まらない場合)
 ```json
 {
@@ -201,7 +201,7 @@ yyyyMMddHHmmss形式の**12文字のキー**で時刻を指定して情報を取
 これは該当部分のある項目をすべて返します  
 短すぎる時間割番号だと該当する項目が多いので返答できない場合があります  
 #### req
-`https://kurisyushien.org/api&mode=exchange&word=74E01`
+`https://kurisyushien.org/api?mode=exchange&word=74E01`
 #### res
 ```json
 {
@@ -248,7 +248,7 @@ yyyyMMddHHmmss形式の**12文字のキー**で時刻を指定して情報を取
 ### 全項目取得モード
 情報のある科目の一覧を取得します
 #### req
-`https://kurisyushien.org/api&mode=all`
+`https://kurisyushien.org/api?mode=all`
 #### res
 ```json
 {
