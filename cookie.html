@@ -1,0 +1,126 @@
+<charset="utf-8">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cookie Sample</title>
+</head>
+<body>
+    <h1>Cookie Sample</h1>
+    <div style="padding: 5px; flex-direction: row; display: flex;">
+        <div class="container">
+            <h2>Save</h2>
+            <div class="yoko">
+                <input type="text" id="key" name="key" placeholder="key">
+                <input type="text" id="value" name="value" placeholder="value">
+            </div>
+            <button id="save" onclick="save(); refresh();">Save and Refresh</button>
+            <div id="result_save" class="container"></div>
+        </div>
+        <div class="container">
+            <h2>Delete</h2>
+            <div class="yoko">
+                <input type="text" id="key_delete" name="key_delete" placeholder="key">
+            </div>
+            <button id="delete" onclick="delete_cookie(); refresh();">Delete and Refresh</button>
+            <div id="result_delete" class="container"></div>
+        </div>
+        <div class="container">
+            <h2>Check</h2>
+            <button id="check" onclick="refresh();">Refresh</button>
+            <div class="container" id="result_check"></div>
+            </div>
+
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+            width: 33%;
+            border: 1px solid #000;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .yoko {
+            display: flex;
+            flex-direction: row;
+        }
+        button {
+            background-color: #0000A0;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .yoko input {
+            margin: 5px;
+        }
+    </style>
+
+    <script>
+        function getCookie() {
+            const cookies = document.cookie.split(';');
+            const cookie = {};
+            for (let i = 0; i < cookies.length; i++) {
+                const cookieArray = cookies[i].split('=');
+                cookie[cookieArray[0].trim()] = cookieArray[1];
+            }
+            return cookie;
+        }
+
+        function setCookie(key, value, days = 7) {
+            let cookie = getCookie();
+            if (key === '' || value === '') {
+                const result_save = document.getElementById('result_save');
+                result_save.innerHTML = '';
+                result_save.appendChild(document.createElement('p')).textContent = 'keyとvalueを入力してください';
+                result_save.style.color = '#ff0000';
+                return;
+            }
+            const expires = new Date(Date.now() + days * 864e5).toUTCString();
+            cookie[key] = value;
+            let cookieString = '';
+            for (let key in cookie) {
+                cookieString += `${key}=${cookie[key]}; expires=${expires};`;
+            }
+            console.log(cookieString);
+            document.cookie = cookieString;
+            console.log(document.cookie);
+        }
+
+        function deleteCookie(key) {
+            let cookie = getCookie();
+            delete cookie[key];
+            cookieString = '';
+            for (let key in cookie) {
+                cookieString += `${key}=${cookie[key]};`;
+            }
+            console.log(cookieString);
+            document.cookie = cookieString;
+        }
+
+        function save() {
+            const key = document.getElementById('key').value;
+            const value = document.getElementById('value').value;
+            console.log(key, value);
+            setCookie(key, value);
+        }
+
+        function delete_cookie() {
+            const key = document.getElementById('key_delete').value;
+            deleteCookie(key);
+        }
+
+        function refresh() {
+            const cookie = getCookie();
+            console.log(cookie);
+            const result_check = document.getElementById('result_check');
+            result_check.innerHTML = '';
+            for (let key in cookie) {
+                result_check.appendChild(document.createElement('p')).textContent = `${key}: ${cookie[key]}`;
+            }
+        }
+    </script>
+</body>
+</html>
+
