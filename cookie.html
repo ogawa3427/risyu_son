@@ -69,7 +69,6 @@
         }
 
         function setCookie(key, value, days = 7) {
-            let cookie = getCookie();
             if (key === '' || value === '') {
                 const result_save = document.getElementById('result_save');
                 result_save.innerHTML = '';
@@ -77,13 +76,8 @@
                 result_save.style.color = '#ff0000';
                 return;
             }
-            const expires = new Date(Date.now() + days * 864e5).toUTCString();
-            cookie[key] = encodeURIComponent(value);  // 値をエンコード
-            let cookieString = '';
-            for (let key in cookie) {
-                cookieString += `${key}=${cookie[key]}; expires=${expires}; path=/;`;
-            }
-            document.cookie = cookieString;
+
+            document.cookie = `${key}=${value}; max-age=${days * 24 * 60 * 60}; path=/;`;
         }
 
         function deleteCookie(key) {
