@@ -81,14 +81,15 @@
         }
 
         function deleteCookie(key) {
-            let cookie = getCookie();
-            delete cookie[key];
-            cookieString = '';
-            for (let key in cookie) {
-                cookieString += `${key}=${cookie[key]};`;
+            if (key === '' || value === '') {
+                const result_save = document.getElementById('result_delete');
+                result_save.innerHTML = '';
+                result_save.appendChild(document.createElement('p')).textContent = 'keyとvalueを入力してください';
+                result_save.style.color = '#ff0000';
+                return;
             }
-            console.log(cookieString);
-            document.cookie = cookieString;
+            
+            document.cookie = `${key}=; max-age=0; path=/;`;
         }
 
         function save() {
